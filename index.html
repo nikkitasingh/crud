@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task Manager</title>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/nativedroid2.css" />
+    <!--    <link rel="stylesheet" href="css/nativedroid2.color.brown.css" />-->
+    <!--    <link rel="stylesheet" href="css/nativedroid2.color.blue-grey.css" />-->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /> </head>
+
+<body>
+    <div data-role="page" id="login_page2">
+        <div data-role="header" id="header" data-position="fixed" data-tap-toggle="false">
+            <h1>LOGIN</h1> </div>
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+            <div class="row firstrow">
+                <div class="col-xs-12">
+                    <input type="text" class="fontawesomeicons" id="usernameinput" data-clear-btn="true" placeholder="&#xf2ba;">
+                    <input type="password" class="fontawesomeicons" id="userpasswordinput" data-clear-btn="true" placeholder="&#xf023;">
+                    <button class="ui-btn appbutton" onclick="login_details()">Login</button>
+                    <br>
+                    <button class="ui-btn appbutton" onclick="changepage('#signuppage');">sign up</button>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false">
+            <h1><span style="font-size: 15px;">Powered By</span> QuickDev</h1> </div>
+    </div>
+    
+    <div data-role="page" id="signuppage">
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+         <br><br>
+               <input type="text" class="fontawesomeicons" id="newusername" data-clear-btn="true" placeholder="Username">
+            
+               <input type="text" class="fontawesomeicons" id="newuseremail" data-clear-btn="true" placeholder="emailid">
+            
+               <input type="text" class="fontawesomeicons" id="newuserpass" data-clear-btn="true" placeholder="password">
+            
+             <button class="ui-btn appbutton" onclick="sign_up()">Sign Up</button>
+        
+        </div>
+        <div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false">
+            <h1><span style="font-size: 15px;">Powered By</span> QuickDev</h1> 
+        </div>
+    </div>
+    
+    
+    <div data-role="page" id="login_page_two">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Gmail login</h1> </div>
+        <div data-role="main" class="ui-content" data-insert="false" data-tap-toggle="false">
+            <div id="row">
+                <div class="col-xs-12">
+                    <input id="useremail" type="text" placeholder="Enter User id"> </div>
+            </div>
+            <div id="row">
+                <div class="col-xs-12">
+                    <input id="password" type="text" placeholder="Enter Username"> </div>
+            </div>
+            <div id="row">
+                <div class="col-xs-12">
+                    <button onclick="submit_login()">submit</button>
+                    <button onclick="changepage('#verification')">goto verification page</button>
+                    <button onclick="changepage('#next_page')">goto next page</button>
+                </div>
+            </div>
+            <div id="row">
+                <div class="col-xs-12">
+                    <p id="para1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="verification">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>verification</h1> <a href="#bottomsheetblock" class="ui-btn ui-btn-left"><i class="fa fa-bars" aria-hidden="true"></i></a> <a onclick="logout2();" class="ui-btn ui-btn-right"><i class="fa fa-sign-out" aria-hidden="true"></i></a> </div>
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+            <p>this is verification page </p>
+            <button onclick="changepage('#next_page')">goto next page</button>
+        </div>
+    </div>
+    <div data-role="page" id="next_page">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1> next page </h1> </div>
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+            <p>this is next page </p>
+            <button onclick="changepage('#verification')">back to verification page</button>
+            <p id="nameshow"></p>
+        </div>
+    </div>
+    <div data-role="page" id="myprofile">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Profile Page</h1> </div>
+        <div data-role="main" class="ui-content" data-insert="false" data-tap-toggle="false">
+            <div class="nd2-card">
+                <div class="row" style="padding: 20px;">
+                    <div class="col-xs-12">
+                        <p>Name: <span id="dynamicusername"> Nikita </span></p>
+                        <p>Email-ID: <span id="dynamicpassword">niki@gmail.com</span></p>
+                    </div>
+                </div>
+            </div>
+            <button class="ui-btn appbutton" onclick="logout();">Logout</button>
+        </div>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Profile Page</h1> </div>
+    </div>
+    <div data-role="page" id="profile">
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+            <!--            <button class="ui-btn" onclick="getmydetails();">Click me</button>-->
+            <div class="nd2-card">
+                <div class="row myfirstrow">
+                    <div class="col-xs-6">
+                        <p>Username:</p>
+                    </div>
+                    <div class="col-xs-6">
+                        <p id="username">Username</p>
+                    </div>
+                </div>
+                <div class="row myfirstrow">
+                    <div class="col-xs-6">
+                        <p>UserAddress:</p>
+                    </div>
+                    <div class="col-xs-6">
+                        <p id="useraddress">UserAddress</p>
+                    </div>
+                </div>
+                <div class="row myfirstrow">
+                    <div class="col-xs-6">
+                        <p>Userage: </p>
+                    </div>
+                    <div class="col-xs-6">
+                        <p id="userage">Userage</p>
+                    </div>
+                </div>
+            </div>
+            <button onclick="changepage('#pagename1');">Go to Next</button>
+            <br> <i class="fa fa-sign-out" aria-hidden="true"></i> </div>
+        <div data-role="footer" id="footer" data-position="fixed" data-tap-toggle="false">
+            <h1>Footer</h1> </div>
+    </div>
+    <!--    end of first page-->
+    <div data-role="page" id="pagename1">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Header</h1> </div>
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+            <div class="row ">
+                <div class="col-xs-12">
+                    <div id="profimg"><img src="img/logo.png" width="30%"></div>
+                </div>
+            </div>
+            <div class="row firstrow1">
+                <div class="col-xs-6">
+                    <div>Name</div>
+                </div>
+                <div class="col-xs-6">
+                    <div>Nikita</div>
+                </div>
+            </div>
+            <div class="row firstrow1">
+                <div class="col-xs-6">
+                    <div>Email</div>
+                </div>
+                <div class="col-xs-6">
+                    <div>nikitasingh@gmail.com</div>
+                </div>
+            </div>
+            <div class="row firstrow1">
+                <div class="col-xs-6">
+                    <div>Address</div>
+                </div>
+                <div class="col-xs-6">
+                    <div>Nerul</div>
+                </div>
+            </div>
+            <div class="row  firstrow1">
+                <div class="col-xs-6">
+                    <div>Contact</div>
+                </div>
+                <div class="col-xs-6">
+                    <div>789014235</div>
+                </div>
+            </div>
+            <button onclick="changepage('#secnd');">Navigate</button>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <h1>Footer</h1> </div>
+    </div>
+    <div data-role="page" id="secnd">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Header</h1> </div>
+        <div class="ui-content" role="main" data-inset="false" data-tap-toggle="false">
+            <div class="row myfirstrow">
+                <div class="col-xs-4">
+                    <p>Heading1</p>
+                </div>
+                <div class="col-xs-4">
+                    <p>Heading2</p>
+                </div>
+                <div class="col-xs-4">
+                    <p> Heading3</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">Name</div>
+                <div class="col-xs-6">Email</div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <h1>Footer</h1> </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/nativedroid2.js"></script>
+    <script src="nd2settings.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>

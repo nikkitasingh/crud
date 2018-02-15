@@ -1,0 +1,56 @@
+.ui-page {
+    background-color: white !important;
+    /*
+    background-image: url("../img/th.jpg");
+    background-size: cover;
+*/
+}
+input.fontawesomeicons {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+.myfclass {
+    background-color: blue;
+    color: white;
+}
+#header {
+    background-color:firebrick !important;
+    float: left !important;
+    color: white;
+}
+
+.Logoimg {
+    text-align: center !important;
+}
+
+#footer {
+    background-color:firebrick!important;
+    float: inherit !important;
+    color: white;
+}
+
+.myfirstrow {
+    background-color: grey;
+    color: aliceblue;
+    padding: 10px;
+}
+
+
+
+#profimg {
+    text-align: center !important;
+}
+
+.myfirstrow {
+    color: white;
+}
+.appbutton{
+    background-color:darkslategrey !important;
+    color:white !important;
+}
+.logindiv{
+    text-align: center !important;
+}
