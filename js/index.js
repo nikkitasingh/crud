@@ -131,20 +131,22 @@ function login_details() {
     }
     $.mobile.loading('show');
     $.ajax({
-        url: "http://localhost/jqueryproject/www/api/selectdata.php"
+        url: "http://localhost/shared%20folder/crud/api/selectdata.php"
         , type: "post"
         , data: 'uname=' + newuserinput + '&upass=' + newpassinput
         , success: function (response) {
             $.mobile.loading('hide');
-            alert(response);
+            //            alert(response);
             if (response != 'false') {
                 var getdata = $.parseJSON(response);
                 $(getdata).each(function (index, element) {
+                    changepage('#myprofile');
+                    //                    alert(element.id);
+                    localStorage.setItem("id", element.id);
                     localStorage.setItem("username", element.name);
                     localStorage.setItem("emailid", element.email);
                     localStorage.setItem('loggedin', 1);
                 });
-                changepage('#myprofile');
             }
             else {
                 alert('Username or password does not exist');
@@ -164,9 +166,9 @@ $(document).on("pageshow", "#myprofile", function () {
     else {
         changepage('#myprofile');
         var name = localStorage.getItem('username');
-        var designation = localStorage.getItem('emailid');
+        var emailid = localStorage.getItem('emailid');
         $('#dynamicusername').html(name);
-        $('#dynamicpassword').text(designation);
+        $('#dynamicpassword').html(emailid);
     }
 });
 $(document).on("pageshow", "#login_page2", function () {
@@ -175,6 +177,79 @@ $(document).on("pageshow", "#login_page2", function () {
         changepage('#myprofile');
     }
 });
+$(document).on("pageshow", "#editpage", function () {
+    //    alert();
+    var name = localStorage.getItem('username');
+    var emailid = localStorage.getItem('emailid');
+    $('#editusername').val(name);
+    $('#edituseremail').val(emailid);
+});
+
+function update() {
+    var id = localStorage.getItem('id');
+    var updatedusername = $('#editusername').val();
+    var updateduseremail = $('#edituseremail').val();
+    //    alert(updatedusername + updateduseremail);
+    //    alert(name);
+    $.mobile.loading('show', {
+        textVisible: true
+        , theme: 'z'
+        , html: "<span class='ui-bar ui-overlay-c ui-corner-all'><img src='http://www.shougun.it/images/loading.gif' /><h2>loading...</h2></span>"
+    });
+    $.ajax({
+        url: "http://localhost/shared%20folder/crud/api/updateprofile.php"
+        , type: "post"
+        , data: 'updateusername=' + updatedusername + '&updateemail=' + updateduseremail + '&userid=' + id
+        , success: function (response) {
+            $.mobile.loading('hide');
+            //            alert(response);
+            if (response != 'false') {
+                alert(response);
+                localStorage.setItem("username", updatedusername);
+                localStorage.setItem("emailid", updateduseremail);
+                changepage('#myprofile');
+            }
+            else {
+                alert(response);
+            }
+        }
+        , error: function () {
+            $.mobile.loading('hide');
+            ///////// console.log(response);
+        }
+    });
+}
+
+function deleteuser() {
+    var id = localStorage.getItem('id');
+    var deleteconfirm = confirm("are you sure!");
+    if (deleteconfirm == true) {
+        $.mobile.loading('show');
+        $.ajax({
+            url: "http://localhost/shared%20folder/crud/api/delete.php"
+            , type: "post"
+            , data: 'id=' + id
+            , success: function (response) {
+                $.mobile.loading('hide');
+                //            alert(response);
+                if (response != 'false') {
+                    localStorage.clear();
+                    changepage('#myprofile');
+                }
+                else {
+                    alert(response);
+                }
+            }
+            , error: function () {
+                $.mobile.loading('hide');
+                ///////// console.log(response);
+            }
+        });
+    }
+    else {
+        return;
+    }
+}
 
 function sign_up() {
     var newusername = $('#newusername').val();
@@ -183,7 +258,7 @@ function sign_up() {
     //    alert(newusername+newuseremail+newuserpass);
     $.mobile.loading('show');
     $.ajax({
-        url: "http://localhost/jqueryproject/www/api/signup.php"
+        url: "http://localhost/shared%20folder/crud/api/signup.php"
         , type: "post"
         , data: 'username=' + newusername + '&emailid=' + newuseremail + '&password=' + newuserpass
         , success: function (response) {
